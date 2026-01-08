@@ -1,56 +1,28 @@
+:root {
+    --bg-dark: #0f0f0f;
+    --bg-card: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --accent: #007bff;
+}
+
 body {
-    /* padding-top: 56px; */
-    background-color: beige;
-    color: black;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
     font-family: 'Poppins', sans-serif;
-    background-color: gainsboro
+    overflow-x: hidden;
 }
 
 .profile-img {
-    width: 250px;
-    /* Adjust size as needed */
-    height: 250px;
-    /* Ensure it's a square */
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
-    /* Makes it round */
+    border: 5px solid var(--accent);
     object-fit: cover;
-    /* Ensures it doesn't stretch */
-    border: 4px solid #fff;
-    /* Optional: Add a white border */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    /* Optional: Add shadow */
-    margin-bottom: 15px;
-    /* Space below image */
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
 }
 
-.section {
-    background-color: #1e1e1e;
-    color: black;
-    padding: 40px;
-    border-radius: 10px;
-    margin: 20px;
-}
-
-a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
-}
-
-a:hover {
-    color: #ff9800;
-}
-
-.carousel-item img {
-    width: 100%;
-    /* Make sure the image takes up full width of the container */
-    height: 400px;
-    /* Set a fixed height for all carousel images */
-    object-fit: cover;
-    /* Ensures the image covers the area without distortion */
-    border-radius: 15px;
-}
-
+/* Sidebar Responsive Fix */
 .fixed-sidebar {
     position: fixed;
     left: 20px;
@@ -59,113 +31,74 @@ a:hover {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    z-index: 1000;
+    transition: 0.3s ease;
 }
 
 .nav-icon {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     background: #333;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     text-decoration: none;
-    font-size: 20px;
-    transition: background 0.3s ease;
+    transition: 0.3s;
 }
 
 .nav-icon:hover {
-    background: #555;
-}
-
-.nav-icon::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 60px;
-    background: #333;
+    background: var(--accent);
     color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.nav-icon:hover::after {
-    opacity: 1;
-    visibility: visible;
-}
-
-.hero-section {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* background: linear-gradient(to right, #007bff, #6610f2); */
-    /* color: white; */
-}
-
-.hero-section h1 span {
-    color: yellow;
-}
-
-
-#profession {
-    font-weight: 700;
-    /* color: #007bff; */
-}
-
-
-#cursor {
-    font-weight: bold;
-    color: #007bff;
-    /* font-size: large; */
-    animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-    50% {
-        opacity: 0;
-    }
-}
-
-.biodata {
-    text-align: left;
-    margin-left: 10%;
-}
-
-.fa-arrow-right {
-    margin-bottom: 20px;
 }
 
 .card {
-    margin-bottom: 15px; 
+    background: var(--bg-card);
+    border: 1px solid #333;
+    color: var(--text-primary);
     border-radius: 15px;
 }
 
-#contact a {
-    text-decoration: none;
-}
-
-
-/* Center the h3 headings */
-.centered-title {
+.section-title {
     text-align: center;
-    margin-bottom: 15px; /* Optional: Adjust spacing below headings */
+    margin-bottom: 50px;
+    font-weight: 700;
+    position: relative;
 }
 
-/* Remove bullets and indentation for lists */
-.no-bullets {
-    list-style-type: none;
-    padding-left: 0;
-    margin-left: 0;
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    margin: 10px auto;
 }
 
-/* Align the list items to the left (default behavior) */
-.no-bullets li {
-    text-align: left;
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: var(--accent);
+        padding: 10px;
+        border-radius: 50%;
+        z-index: 1100;
+        cursor: pointer;
+    }
+
+    .fixed-sidebar {
+        left: -100px; /* Hidden by default */
+    }
+
+    .fixed-sidebar.active {
+        left: 20px;
+    }
+
+    .hero-section h1 { font-size: 2.5rem; }
 }
+
+#cursor { color: var(--accent); animation: blink 0.7s infinite; }
+@keyframes blink { 50% { opacity: 0; } }

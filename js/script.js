@@ -4,14 +4,15 @@ function toggleSidebar() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const roles = ['Web Developer', 'Software Engineer', 'MERN Developer', 'Freelancer'];
+    // Dynamic typing effect
+    const roles = ['Software Developer', 'Full-Stack Engineer', 'Technology Consultant', 'Azure Specialist'];
     let index = 0, charIndex = 0;
     const textElement = document.getElementById('profession');
 
     function type() {
-        let current = roles[index];
-        textElement.textContent = current.substring(0, charIndex);
-        if (charIndex < current.length) {
+        let currentRole = roles[index];
+        textElement.textContent = currentRole.substring(0, charIndex);
+        if (charIndex < currentRole.length) {
             charIndex++;
             setTimeout(type, 100);
         } else {
@@ -24,24 +25,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     type();
 
-    // Responsive Read More
-    document.querySelectorAll('.card-text').forEach(desc => {
-        const full = desc.innerText;
-        if (full.length > 150) {
-            const short = full.substring(0, 150) + "... ";
-            desc.innerHTML = `<span>${short}</span><a href="#" class="read-btn" style="color: #007bff; text-decoration: none;">Read More</a>`;
-            const btn = desc.querySelector('.read-btn');
-            btn.onclick = (e) => {
-                e.preventDefault();
-                if (btn.innerText === "Read More") {
-                    desc.querySelector('span').innerText = full;
-                    btn.innerText = " Read Less";
-                } else {
-                    desc.querySelector('span').innerText = short;
-                    btn.innerText = "Read More";
-                }
-            };
-        }
+    // Responsive Sidebar Close on Link Click
+    document.querySelectorAll('.nav-icon').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.fixed-sidebar').classList.remove('active');
+            }
+        });
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
